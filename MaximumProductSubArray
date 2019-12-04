@@ -1,0 +1,9 @@
+class Solution:
+    def maxProduct(self, nums: List[int]) -> int:
+        local_min = local_max = global_max = nums[0]
+        for n in nums[1:]:
+            temp = local_max 
+            local_max = max(n, n*local_max, n*local_min)
+            local_min = min(n, n*local_min, n*temp)
+            global_max = max(global_max, local_max)
+        return global_max
