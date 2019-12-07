@@ -1,0 +1,41 @@
+class Solution:
+    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
+        spiral = []
+        
+       
+        def topRight():
+            
+            top = matrix.pop(0)
+            right = []
+           
+            for i in range(len(matrix)-1):
+                if matrix[i]:
+                    right.append(matrix[i].pop())
+         
+            return top + right
+            
+                
+        def bottomLeft():
+            
+            bottom = matrix.pop()[::-1]
+            left = []
+            
+            for i in range(len(matrix)-1,0,-1):
+                if matrix[i]:
+                    left.append(matrix[i].pop(0))
+            return bottom+left
+            
+            
+        while len(matrix) > 0:
+            if len(matrix) == 1:
+                spiral += matrix[0]
+                break
+            if len(matrix) > 0:
+                spiral += topRight()
+              
+            
+                spiral += bottomLeft()
+               
+          
+            
+        return spiral
